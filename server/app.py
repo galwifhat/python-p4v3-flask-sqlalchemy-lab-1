@@ -36,16 +36,19 @@ def get_earthquake_by_id(id=None):
         # return make_response({"message": f"Earthquake {id} not found."}, 404)
     else:
         # extracting the fields from the Earthquake object into a plain dictionary
-        # something Flask can serialize to JSON and send back to the client.
+        # something Flask can serialize to JSON and send back to the client - using sqlalchemy-serializer
         # body = {
         #     "id": quake.id,
         #     "location": quake.location,
         #     "magnitude": quake.magnitude,
         #     "year": quake.year,
         # }
+
+        body = quake.to_dict()
         status_code_good = 200
         headers = {}
-        # return make_response(body, status_code_good, headers)
+
+        return make_response(body, status_code_good, headers)
         return make_response(quake.to_dict(), status_code_good, headers)
 
 

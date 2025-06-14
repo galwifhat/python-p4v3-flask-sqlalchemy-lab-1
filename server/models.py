@@ -19,13 +19,14 @@ class Earthquake(db.Model, SerializerMixin):
     # avoid writing body it manually every time
     # make python object JSON serializable
     # best practice
-    def to_dict(self): 
-        return {
-            "id": self.id,
-            "magnitude": self.magnitude,
-            "location": self.location,
-            "year": self.year,
-        }
+    # no need for the to dict fun when using serializartion, it removes the need for to_dict func
+    # def to_dict(self):
+    #     return {
+    #         "id": self.id,
+    #         "magnitude": self.magnitude,
+    #         "location": self.location,
+    #         "year": self.year,
+    #     }
 
     # Then in routes (app.py)
     # return make_response(quake.to_dict(), 200)
